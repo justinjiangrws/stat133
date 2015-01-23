@@ -1,0 +1,5 @@
+name = "Justin Jiang"
+SID = "23696541"
+email = "justinjiang.rws@berkeley.edu"
+github_name = "justinjiangrws"
+status = "enrolled"
