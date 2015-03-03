@@ -1,0 +1,17 @@
+INFO:root:Executed R('load(\'../../instructor/assignments/hw1/hw1-tests.rda\')')
+INFO:root:(2 points) R('all.equal(y, sol$y)')[0] is True
+INFO:root:(2 points) R('all.equal(z, sol$z)')[0] is True
+ERROR:root:(2 points) Checking R('all.equal(z, sol$z1)')[0]
+ERROR:root:... Expecting: True
+ERROR:root:... But got:   20 string mismatches
+INFO:root:(2 points) R('all.equal(m, sol$m)')[0] is True
+INFO:root:(2 points) R('all.equal(mean.m, sol$mean.m)')[0] is True
+INFO:root:(2 points) R('all.equal(sd.m, sol$sd.m)')[0] is True
+INFO:root:(2 points) R('all.equal(max.m, sol$max.m)')[0] is True
+INFO:root:(2 points) R('all.equal(bmi, sol$bmi)')[0] is True
+INFO:root:(2 points) R('all.equal(family.men, sol$family.men)')[0] is True
+INFO:root:(2 points) R('all.equal(family.young, sol$family.young)')[0] is True
+ERROR:root:(2 points) Checking R('all.equal(family2, sol$family2)')[0]
+ERROR:root:... Expecting: True
+ERROR:root:... But got:   Names: 5 string mismatches
+INFO:root:You got a 18 out of 20.

@@ -1,0 +1,23 @@
+{
+    "email": "justinjiang.rws@berkeley.edu", 
+    "github_name": "justinjiangrws", 
+    "grades": {
+        "hw1": {
+            "note": "", 
+            "hash": "51ae20e6a16c42f7036cda9dd5a513178ee7a4d4", 
+            "earned": 18, 
+            "possible": 20, 
+            "penalty": 0, 
+            "parts": {
+                "hw1": {
+                    "possible": 20, 
+                    "earned": 18
+                }
+            }
+        }
+    }, 
+    "login": "justinjiangrws", 
+    "name": "Justin Jiang", 
+    "status": "enrolled", 
+    "url": "git@github.com:justinjiangrws/stat133.git"
+}
