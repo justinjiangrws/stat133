@@ -1,14 +1,16 @@
 # Please load in the dataset included in the midterm1 directory. It will be
 # required to perform the following tasks. The dataset includes data for houses
 # in the city of Berkeley.
-
+load("SFHousing-2.rda")
 
 # calculate the mean and median bsqft of houses in Berkeley. Store these as the
 # variables <mean.bsqft> and <med.bsqft> respectively.
 
-# mean.bsft <- your code here
-# med.bsqft <- your code here
+# mean.bsqft <- your code here
+mean.bsqft <- mean(housing$bsqft,na.rm = TRUE)
 
+# med.bsqft <- your code here
+med.bsqft <- median(housing$bsqft,na.rm = TRUE)
 
 # For each house in the dataset, calculate the squared difference between its
 # bsqft and the median bsqft of houses in Berkeley. Store this as the variable
@@ -16,7 +18,7 @@
 # the number of observations in the dataset
 
 # bsqft.diffs <- your code here
-
+bsqft.diffs <- (housing$bsqft - med.bsqft)^2
 
 
 # Please create two new data frames with the following two subsets
@@ -25,14 +27,19 @@
 # 2) houses whose bsqft is less than or equal to  <mean.bsqft>: <bsqft.less>
 
 # bsqft.greater <- your code here
+greater <- housing$bsqft > round(mean.bsqft) + 1
+bsqft.greater <- housing$bsqft[greater]
 # bsqft.less <- your code here
-
+less <- housing$bsqft <= mean.bsqft
+bsqft.less <- housing$bsqft[less]
 
 # For each of your subsets, create a vector giving the price of each house. Name
 # these variables <rooms.greater.price> and <rooms.less.price>.
 
 # rooms.greater.price <- your code here
+rooms.greater.price <- housing$price[greater]
 # rooms.less.price <- your code here
+rooms.less.price <-housing$price[less]
 
 
 
@@ -49,10 +56,15 @@
 # <br> in the range (inclusive) specified by <room.range>
 
 priceByRooms <- function(room.range, br, prices) {
-
     # your code here
+  no <- room.range
+  for (br in no){
+    avg <- mean(housing[housing$br == br, c("price")])
+  }
+  return (avg)  
+  }
 
-}
+
 
 
 # Please create a plot of house price (y-axis) against br (x-axis). Your plot
@@ -60,4 +72,4 @@ priceByRooms <- function(room.range, br, prices) {
 # 1) a title "Housing price vs Number of Rooms"
 # 2) axis labels: "price" and "number of rooms"
 # 3) plotting character set to 20
-
+plot(housing$br, housing$price, main = "Housing price vs Number of Rooms", xlab = "number of rooms", ylab = "price",pch=20)
