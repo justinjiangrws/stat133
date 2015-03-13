@@ -19,5 +19,6 @@
     "login": "justinjiangrws", 
     "name": "Justin Jiang", 
     "status": "enrolled", 
-    "url": "git@github.com:justinjiangrws/stat133.git"
+    "url": "git@github.com:justinjiangrws/stat133.git", 
+    "section": "lab3"
 }
