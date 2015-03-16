@@ -1,0 +1,13 @@
+BML Results/Comments ("Warning!: Questions can't be answered COMPLETELY until larger study simulations are done on Monday in the Statistics Computer Lab")
+
+1. For what values of p, the density of the grid, did you find free flowing traffic and traffic jams? Did you find any cases of a mixture of jams and free flowing traffic?
+
+  *Based on a simpler simpulation run of stepsize = 5000, and a runsize of 50 with a 15x15 matrix, the value of p that resulted in traffic jams (described as steps until gridlock < 5000), almost strictly were pvals of 0.6, 0.7, 0.8, 0.9, and 1. Conversely the pvals of 0.1, 0.2, 0.3, 0.4 almost were entirely traffic free (described as steps until gridlock = 5000). The mixtures of both jams and free flowing traffic were with the pval of 0.5. The pval of 0.0 was not checked for trivial reasons.
+
+2. How many simulation steps did you need to run before observing this behavior?
+
+  *Need Larger Studies
+
+3. Does the transition depend on the size or shape of the grid?
+
+  *Nedd Larger Studies
