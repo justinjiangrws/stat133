@@ -1,0 +1,100 @@
+---
+title: "Section Worksheet: Regular Expressions"
+author: 
+date: "March 19, 2015"
+output: pdf_document
+---
+
+
+Write down a regular expression to match the following:
+
+* Words with @ symbols in them, e.g., vi@gra
+
+* An IP address (4 sets of 1-3 digits separated by periods, e.g., 124.32.6.240)
+* A typical email address that ends with .com, .edu, .net, .org, or .gov
+
+Consider the following character vector,
+```{r, echo = FALSE}
+movies <- c("The Shawshank Redemption (1994)"   ,
+            "The Godfather (1972)" ,
+            "The Godfather: Part II (1974)",
+            "Pulp Fiction (1994)",
+            "The Good, the Bad and the Ugly (1966)",
+            "12 Angry Men (1957)")
+```
+```{r} 
+movies
+```
+What is the return expression from each of the following function calls:
+```{r, eval = FALSE}
+grep("I{2,}", movies)
+```
+
+```{r, eval = FALSE}
+grep("Go+d", movies)
+```
+
+```{r, eval = FALSE}
+gregexpr("\\(.*\\)", movies[1])
+```
+
+```{r, eval = FALSE}
+gsub("[0-9]", "", movies[6])
+```
+
+```{r, eval = FALSE}
+gsub("[[:blank:]].*$", "", movies[5])
+```
+
+```{r, eval = FALSE}
+gsub(" \\(.*$", "", movies[5])
+```
+
+
+ Suppose we want to match the word 'cat' or 'at' or 't' but
+ don't want to match 'cat' embedded within another word
+ There can be other words present:
+```{r}
+cats = c("diplocat", "Hi cat", "mat", "at", "t!", "ct")
+```
+The \< stands for beginning of a word and
+ \> stands for the end of a word
+In R we have to escape the \\ with an extra \\.
+```{r}
+grep("\\<(cat|at|t)\\>", cats)
+grep("\\<(ca|a)?t\\>", cats)
+```
+
+The following do not work as expected can you figure out why?
+```{r}
+grep("\\<c?a?t)\\>", cats)
+grep("^(cat|at|t)$", cats)
+```
+
+
+Find the word cat or caat or caaat, etc.
+```{r}
+caats = c("cat", "caat.", "caats", "caaaat", "my cat")
+grep("\\<ca+t\\>", caats)
+# the {1,} is equivalent to +
+grep("\\<ca{1,}t\\>", caats)
+```
+
+ Now we want to find dog anywhere in the string
+ We don't care about capitals
+```{r}
+dogs = c("dogmatic", "TopDog","Doggone it!", "RUN DOG RUN")
+# The tolower function is handy here.
+grep("dog", tolower(dogs))
+grep("[Dd][Oo][Gg]", dogs)
+```
+
+Finally we are looking at character vectors where
+ each entry must be a number.
+ The number can have an optional sign in front of it
+ The number can have an optional decimal point followed by digits
+```{r}
+nums = c("1.2", "-3000", "5lo", "hi2", "12.", "+57")
+grep("^[-+]?[[:digit:]]+(\\.[[:digit:]]+)?$", nums)
+```
+
