@@ -31,14 +31,24 @@ sim.doctors <- function(initial.doctors, n.doctors, n.days, p){
 
   # Set up the output variable, define it as a matrix then use initial.doctors
   # to set the first column (day)
+  output.doctors <- matrix(data = initial.doctors, nrow = n.doctors, ncol = n.days)
 
   # Run a simulation for <n.days> (use a for loop).  In the loop:
+  for (i in 2:ncol(output.doctors)){
+    sample.column <- sample(x = c(1:ncol(output.doctors)), size = 2, replace = FALSE)
+    sample.doctors <- output.doctors[,i][sample.column]
+    if (sample.doctors[1] == 1 | sample.doctors[2] == 1){
+      if (runif(1) <= p){
+        output.doctors[sample.column,i:ncol(output.doctors)] <- 1
+      }
+    }
+  }
   # 1) pick two random doctors
   # 2) check if one has adopted the other hasn't
   # 3) convert the non-adopter with probability p
 
   # return the output
-
+  return (output.doctors)
 }
 
 # When you test your function you have to generate <initial.doctors> and
@@ -51,3 +61,19 @@ set.seed(42)
 # on y-axis : the number of doctors that have already adopted the drug, on that day
 # Put all 5 lines in one figure (e.g. use first plot() then lines() for the subsequent lines)
 
+simulation <- matrix(ncol = 5, nrow = 100)
+
+for (i in 1:5){
+  p <- 2*i
+  sim.mat <- sim.doctors(sample(x = c(0,1), size = 200, prob = c(.9,.1), replace = TRUE), n.doctors = 200, n.days = 100, p)
+  line <- colSums(sim.mat)
+  simulation[,i] <- line
+}
+
+plot(simulation[,1], type = "l", xlab = "days", ylab = "Number of doctors adopting drug", main = "Drug Adoptions by Day", col = "blue", ylim = c(0,75))
+lines(simulation[,2], col = "red")
+lines(simulation[,3], col = "green")
+lines(simulation[,4], col = "purple")
+lines(simulation[,5], col = "brown")
+
+legend("bottomright", fill=c("blue","red","green","purple","brown"), legend=paste0("p",seq(0.2,1,by=.2)),cex = 0.6)
