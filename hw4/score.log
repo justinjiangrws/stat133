@@ -1,0 +1,17 @@
+INFO:root:Executed R('load(\'../../instructor/assignments/hw4/hw4-tests.rda\')')
+INFO:root:Executed R('library(plyr)')
+INFO:root:Executed R('listLengths.r <- listLengths(test$listLengths)')
+INFO:root:(3 points) R('all.equal(listLengths.r, sol$listLengths)')[0] is True
+INFO:root:(1 points) R('all.equal(length(listLengths.r), length(sol$listLengths))')[0] is True
+INFO:root:Executed R('powers.r <- powers(seq(1, 3, by = 1), 3)')
+INFO:root:(3 points) R('all.equal(powers.r, sol$powers, check.attributes=F)')[0] is True
+INFO:root:(1 points) R('all.equal(length(powers.r), length(sol$powers), check.attributes=F)')[0] is True
+INFO:root:Executed R('recipe.r <- recipeConversion(test$recipe)')
+INFO:root:(3 points) R('all.equal(recipe.r, sol$recipe, check.attributes=F, tolerance=1e-1)')[0] is True
+INFO:root:Executed R('bootstrapVarEst.r <- bootstrapVarEst(test$bootstrapVarEst.x, test$bootstrapVarEst.B)')
+INFO:root:(3 points) R('all.equal(bootstrapVarEst.r, sol$bootstrapVarEst, check.attributes=F, tolerance=1)')[0] is True
+INFO:root:Executed R('jackknifeVarEst.r <- jackknifeVarEst(test$jackknifeVarEst.x)')
+INFO:root:(3 points) R('all.equal(jackknifeVarEst.r, sol$jackknifeVarEst, check.attributes=F, tolerance=1e-1)')[0] is True
+INFO:root:Executed R('samplingVarEst.r <- samplingVarEst(test$samplingVarEst.x, test$samplingVarEst.type)')
+INFO:root:(3 points) R('all.equal(samplingVarEst.r, sol$samplingVarEst, check.attributes=F, tolerance=1e-1)')[0] is True
+INFO:root:You got a 20 out of 20.
