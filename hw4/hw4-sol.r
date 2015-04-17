@@ -40,12 +40,9 @@ listLengths <- function(data.list) {
 powers <- function(x, k){
     if(!is.numeric(x)) warning("x should be a numeric vector")
     x.powers <- x
-    x.colnames <- "x"
     for(i in 2:k){
         x.powers <- cbind(x.powers, x^i)
-        x.colnames <- cbind(x, paste("x^", i))
     }
-    colnames(x) <- x.colnames
     return(x.powers)
 }
  
