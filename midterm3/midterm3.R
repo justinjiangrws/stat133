@@ -9,6 +9,17 @@
 #   <num.star>: an integer indicating how many elements of <chvec> contain the "*"
 #     symbol. For example: numStarElements(c('star', 'st*r', '***')) should return 2
 
+numStarElements <- function(chvec){
+  num <- grepl("\\*",chvec)
+  elem <- 0
+  for (i in 1:length(num)){
+    if (num[i] == TRUE){
+      elem <- 1 + elem
+    }
+  }
+  return (elem)
+}
+
 
 
 # Write a function called numDigits that counts the number of (single) digits in
@@ -23,7 +34,10 @@
 # all.equal(numDigits("1z3p ! 21"), 4)
 # all.equal(numDigits("abcdefg"), 0)
 
-
+numDigits <- function(chvec){
+  total <- gsub("[0-9]","",chvec)
+  return (nchar(chvec) - nchar(total))  
+}
 
 # Write a function called hisToTheir that converts every instance of him
 # in a string to them; every instance of he to they and every instance of 
@@ -41,6 +55,12 @@ all.equal(
   "she went to the store her mother gave her"
 )
 
+hisToTheir <- function(chvec){
+  theirchvec <- gsub("\\<(him)\\>","them",chvec)
+  theirchvec <- gsub("\\<(he)\\>","they",theirchvec)
+  theirchvec <- gsub("\\<(his)\\>","their",theirchvec)
+  return (theirchvec)
+}
 
 
 # Write a function called mostCommonLetter that finds the most common 
@@ -55,3 +75,11 @@ all.equal(
 #  <letter> The most common letter or letters in the string.
 # For example mostCommonLetter("aabbccccdddd") should return 
 # [1] "c" "d"
+
+mostCommonLetter <- function(chvec){
+  chvec <- tolower(chvec)
+  convert <- gsub("[:digit:]","",chvec)
+  convert <- gsub("[:punct:]","",convert)
+  letter <- 
+  return (letter)
+}
