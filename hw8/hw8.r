@@ -104,12 +104,12 @@ repBoot = function(data, B = 1000){
   ### Replicate a call to oneBoot B times for 
   ### each of the four conditions
   
-  call1 <- replicate(n=B,oneBoot(data,fit=NULL,degree=1))
-  call2 <- replicate(n=B,oneBoot(data,fit=NULL,degree=2))
-  call3 <- replicate(n=B,oneBoot(data,fit=fit.line,degree=1))
-  call4 <- replicate(n=B,oneBoot(data,fit=fit.quadratic,degree=2))
+  r1 <- replicate(n = B,oneBoot(data,fit = NULL,degree = 1))
+  r2 <- replicate(n = B,oneBoot(data,fit = NULL,degree = 2))
+  r3 <- replicate(n = B,oneBoot(data,fit = fit.line,degree = 1))
+  r4 <- replicate(n = B,oneBoot(data,fit = fit.quadratic,degree = 2))
   
-  myValue <- list(call1,call2,call3,call4)
+  myValue <- list(r1,r2,r3,r4)
   
   ### Format the return value so that you have a list of
   ### length 4, one for each set of coefficients
@@ -121,6 +121,8 @@ repBoot = function(data, B = 1000){
   
   return(myValue)
 } 
+
+## recieved some help from Julia Gomes here
 
 bootPlot = function(x, y, coeff, trueCoeff){
   ### x and y are the original data
