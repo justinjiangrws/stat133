@@ -1,1 +1,5 @@
-Score: 0/20
+line 67: use is.null(fit)   -2
+bootPlot  -3
+no output due to error  -2
+
+Score: 13/20
