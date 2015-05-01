@@ -1,0 +1,77 @@
+---
+title: "An introduction to linear models"
+author: ''
+date: "April 9, 2015"
+output: pdf_document
+---
+
+#Introduction
+In this lab we will we will learn how to fit linear models in R. We will also cover some model selection techniques and see to check a model is a reasonable approximation of the process generating our data.
+
+#An introduction to linear models
+We will be analysing the `mtcars` dataset. For more information about the dataset run `?mtcars`
+
+```{r}
+head(mtcars)
+```
+
+We are interested in modelling the relationship between engine displacement (`disp`) and fuel consumption (`mpg`). 
+```{r, include = FALSE}
+library(ggplot2)
+```
+
+```{r}
+library(ggplot2)
+p1 <- ggplot(mtcars) + geom_point(aes(x = disp, y = mpg)) + theme_bw()
+p1
+```
+
+The relationship does not look linear, so we might want to fit a model of the form:
+
+ $$y_i = \alpha + \beta_1 x_i + \beta_2 x_i^2 + \epsilon_i$$
+
+Here the $y_i$ is fuel consumption for the i$^{th}$ car and $x_i$ is the engine displacement. $\alpha$, $\beta_1$ and $\beta_2$ are coefficients and $\epsilon$ is the error term.
+
+This can be expressed in `R` relatively simply:
+
+```{r}
+mpg_model <- lm(mpg ~ disp + I(disp^2), data = mtcars)
+```
+Why do you think the `I()` is needed? 
+
+Let's have a look at the `mpg_model`
+```{r}
+mpg_model
+names(mpg_model)
+mpg_model$coefficients
+```
+
+A natural next step is to plot the fitted values and see how well they aline with the truth:
+
+```{r}
+mtcars$mpg_pred <- predict(mpg_model, newdata = mtcars)
+p1 + geom_line(data = mtcars, aes(x = disp, y = mpg_pred), col = "blue")
+```
+
+
+They seeem to be a reasonable match; however in practice fitting complicated models can be avoided by making a suitable transformation. For example if treat 1/mpg as the outcome, things look very linear. 
+```{r, echo = FALSE}
+ggplot(mtcars) + geom_point(aes(x = disp, y = 1/mpg)) + theme_bw()
+```
+
+
+In the real world it is important to check that your model describes reality or is at least a reasonable simulacrum of reality. ``R`` provides built in plots to check some aspects of the suitability of your model
+```{r}
+par(mfrow = c(2,2))
+plot(mpg_model)
+```
+
+
+Optional exercises
+
+1. Read about diamonds dataset (`head(diamonds); ?diamonds`). 
+2. We are interested in using a modelling the relationship  where the response is the price of the diamond and the covariates are the cut, color, clarity and carat weight of the dimaond.
+3. Construct exploratory plots to see which terms might be needed in your linear model.
+4. Fit a sensible linear model. 
+5. Look at the fitted coefficients and try to interpret them.
+6. Check whether some of the assumptions of the linear model are met using the function ``?plot.lm``.

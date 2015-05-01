@@ -1,0 +1,94 @@
+---
+title: "Analyzing textual data"
+output: html_document
+---
+
+In this lab we will work through an example of text mining. First we will download the complete text of Romeo and Juliet:
+```{r}
+randj <- readLines("http://www.gutenberg.org/cache/epub/1112/pg1112.txt")
+```
+
+Let's remove the header information from the file and inspect beginning of the play.
+```{r}
+randj <- randj[-(1:65)]
+head(randj, 20)
+```
+**Exercise**. How many lines are there in the play? Don't count empty lines.
+
+
+
+
+#Zipf's law
+In the first part of this lab we will create a histogram of the word frequency distribution i.e. how many words appear only once, how many words appear twice etc. 
+
+**Step 1** Notice that play is provided as a list of lines. Split each line into a vector so that each entry in the vector contains only one word (Hint recall the ``str.split`` function.)
+
+```{r, include = FALSE}
+randj <- strsplit(randj, split = " ")
+```
+
+**Step 2** Concatenate all of the vectors into a single long vector.
+
+```{r, include = FALSE}
+randj <- do.call(c, randj)
+randj <- tolower(randj)
+```
+
+**Step 3** Use table to find out how many times each word appears in the vector.
+```{r, include = FALSE}
+counts <- table(randj)
+freqs <- table(table(randj))
+```
+
+
+**Step 4** Use table a second time to find out how many words appear only once, how many appear twice etc.
+
+**Step 5** Plot your results as a histogram. You should get something that looks like this>
+
+```{r, fig.keep='last', echo = FALSE}
+plotdd <- as.data.frame(freqs)
+names(plotdd) <- c("appearances", "freq")
+plotdd$appearances <- as.numeric(as.character(plotdd$appearances))
+library(ggplot2)
+ggplot() +
+  geom_bar(aes(x = as.vector(counts)), binwidth = 1) +
+  xlim(1,50)
+```
+
+
+# Making a word cloud.
+For this part we will be using the package ```wordcloud```. Let's load it now.
+```{r, warning = FALSE}
+library(wordcloud)
+```
+
+The function we want is called ```wordcloud``` too. Have a look at the helpfile. 
+
+```{r}
+?wordcloud
+```
+
+**Exercise** Use the ```wordcloud``` function to make a wordcloud for 100 most common words in Romeo and Juliet. Make sure to the empty string "" is not in your list of words! It should look something like this:
+
+```{r, echo = FALSE, warning = FALSE}
+counts <- sort(counts, decreasing = TRUE)[-1]
+wordcloud(names(counts)[1:100], as.vector(counts)[1:100],scale=c(8,0.3),
+          colors=brewer.pal(8, "Dark2"))
+```
+
+Notice that there are are many words that are not all that interesting. Fortunately some people have already collected a list of these very common words. They call them stop words:
+
+```{r, warning = FALSE}
+#install.packages("tm")
+library(tm)
+stopwords(kind = "en")
+```
+
+**Exercise** Remake your word cloud excluding the these very common words.
+
+```{r, include = FALSE, warning = FALSE}
+counts_small <- counts[!names(counts) %in% stopwords(kind = "en")]
+wordcloud(names(counts_small), as.vector(counts_small), max.words = 100,scale=c(8,0.3),
+          colors=brewer.pal(8, "Dark2"))
+```
+
