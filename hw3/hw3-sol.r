@@ -186,9 +186,6 @@ qplot(wr1500m$year, wr1500m$times_sec, colour="red")  + xlim(min(wr1500m$year), 
   annotate(geom="text", x=wr_1998, y=wr1500m$times_sec[wr1500m$new_year == wr_1998], label=wr1500m$athlete[wr1500m$new_year == wr_1998], color="blue") +
   labs(title="World Records in Men's 1500 meter", x="Year", y="Record Times (sec)")
 
-## 4 points (1 point each for: basic plot, labels on axes and title, 
-##  extenison of line, 2 vertical lines with text names 
-
 ################################
 # PLOT 2
 # A lot of medal counting goes on during the Olympics.
@@ -326,7 +323,6 @@ ggplot(athletes, aes(Sport, fill=Sex)) +
   theme(axis.text.x=element_text(angle=-90)) +
   ggtitle("Olympic Sport Participation by Gender")
 
-## 3 pts. 1 pt each for: side-by-side bars, labels rotated, title/plot looks OK
 
 # This was the final version of the 4th plot.
 
