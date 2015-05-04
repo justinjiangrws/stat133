@@ -1,0 +1,16 @@
+Total: 0/20
+##!! HW not completed
+
+Is n.speeches correct? 0/2
+Are presidents and tempDates correct? 0/2
+Are speechYr and speechMo correct? 0/2
+
+Is speechToWords reasonable? 0/2
+Are wordVecs and wordMat reasonable? 0/2
+Is presidentWordMat reasonable? 0/2
+
+Plots
+Are the multi-dimensional scaling plots correct? 0/2
+Is the hierarchical clustering plot appropriate? 0/1
+Are the five plots showing speech year and sentences/words/characters/word length/sentence length well done? 0/5
+
