@@ -1,0 +1,7 @@
+y -1
+f3  -1
+line 101: All three species should on the same plot  -2
+line 108: wrong plot  -3
+apply  -12
+
+Score: 14/33
