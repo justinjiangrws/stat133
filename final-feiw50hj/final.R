@@ -385,7 +385,7 @@ set.seed(123456)
 #    generate a ticket for each player in turn, if they had the winning numbers 
 #    increase the counter by 1
 
-function <- NumJackpot(k, B){
+NumJackpot <- function(k, B){
   numbers <- c()
   for (i in 1:k){
     tickets <- sample(c(1:19), 3)
@@ -398,8 +398,8 @@ function <- NumJackpot(k, B){
 # Plot a histogram of the output from NumJackpot (i.e. four histograms)
 
 # <your plot here>
-hist(NumJackpot(100,5000))
-hist(NumJackpot(500,5000))
+#hist(NumJackpot(100,5000)) #Andy
+#hist(NumJackpot(500,5000))
 
 
 
@@ -428,7 +428,7 @@ text3 <- grep("((ta){1,})", phrases)
 # [2 pts]
 # Create a vector [text4] that has the first 3 characters of each element in phrases
 
-text4 <- gsub("(\\.")
+#text4 <- gsub("(\\.")
 
 
 # [2 pts]
@@ -448,7 +448,7 @@ match1 <- grep("(A|G)(.)(T)", dna)
 
 # [2 pts]
 # Create a vector [dna2] where you have removed all entries whose length is not a multiple of 3
-dna2 <- gsub(length)
+#dna2 <- gsub(length)
 
 #################################################################
 
