@@ -247,7 +247,7 @@ text(medal_winners$pop[top5],medal_winners$GDP_per_person[top5],labels=medal_win
 # where the countries are filled with a light grey color.
 
 ## you only need to run these two lines once:
-#install.packages("maps")
+install.packages("maps")
 library("maps")
 
 world <- map("world", fill = TRUE, col='gray')
@@ -283,7 +283,7 @@ symbols(wonMedal$longitude,wonMedal$latitude, circles = c(medal_winners$Total),a
 # e.g. myColor = "#FEB24CAA" or   "#FEB24C88"
 
 # You only need to call these two lines once:
-#install.packages("RColorBrewer")
+install.packages("RColorBrewer")
 library("RColorBrewer")
 
 display.brewer.all()
