@@ -1,0 +1,85 @@
+INFO:root:(1 points) WR times: Does the final plot have at least the elements in a basic plot? is y
+INFO:root:(1 points) WR times: Does the final plot contain a main title, an x-label and a y-label? is y
+INFO:root:(1 points) WR times: Does the final plot have the extension of line? is y
+INFO:root:(1 points) WR times: Are there two vertical lines? is y
+ERROR:root:(1 points) Checking WR times: Are the vertical lines grey?
+ERROR:root:... Expecting: False
+ERROR:root:... But got:   n
+INFO:root:(1 points) WR times: Are there text names next to the lines? is y
+ERROR:root:(1 points) Checking Medals: Is the plot not too cluttered?
+ERROR:root:... Expecting: False
+ERROR:root:... But got:   n
+INFO:root:(1 points) Medals: Are there labels in the plot? is y
+INFO:root:(1 points) Medals: Are there circles and points in the plot? is y
+INFO:root:(1 points) Medals: Are there five labelled circles in the plot? is y
+ERROR:root:(1 points) Checking Medals: Does the basic plot look fine?
+ERROR:root:... Expecting: False
+ERROR:root:... But got:   n
+INFO:root:(1 points) Map: Does the plot look good? is y
+ERROR:root:(2 points) Checking Map: Are the circles of decent size?
+ERROR:root:... Expecting: False
+ERROR:root:... But got:   n
+INFO:root:(1 points) Map: Are the colors reasonable? is y
+INFO:root:(1 points) Barplot: Did the student try both versions of the barplot? is y
+INFO:root:(1 points) Barplot: Are the bars side-by-side? is y
+INFO:root:(2 points) Barplot: Are the labels rotated? is y
+INFO:root:(1 points) Barplot: Does the title and the plot look okay? is y
+INFO:root:Executed R('load(\'../../instructor/assignments/hw2/hw2-tests.rda\')')
+INFO:root:(1 points) R('all.equal(n.wr, sol$n.wr, check.attributes=F)')[0] is True
+INFO:root:(1 points) R('all.equal(wr.name, sol$wr.name, check.attributes=F)')[0] is True
+INFO:root:(1 points) R('all.equal(times_sec, sol$times_sec, check.attributes=F)')[0] is True
+INFO:root:(1 points) R('all.equal(new_year, sol$new_year, check.attributes=F)')[0] is True
+INFO:root:(1 points) R('all.equal(wr1500m, sol$wr1500m, check.attributes=F)')[0] is True
+ERROR:root:(1 points) Checking R('all.equal(wr_1998, sol$wr_1998, check.attributes=F)')[0]
+ERROR:root:... Expecting: True
+ERROR:root:... But got:   Mean relative difference: 8.701861
+ERROR:root:(1 points) Checking R('all.equal(wr_1944, sol$wr_1994, check.attributes=F)')[0]
+ERROR:root:... Expecting: True
+ERROR:root:... But got:   target is numeric, current is NULL
+INFO:root:(1 points) R('all.equal(n.athletes, sol$n.athletes, check.attributes=F)')[0] is True
+ERROR:root:(1 points) Checking R('all.equal(n.women, sol$n.women, check.attributes=F)')[0]
+ERROR:root:... Expecting: True
+ERROR:root:... But got:   Traceback error
+ERROR:root:Got exception:
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/gradebook/score.py", line 180, in check
+    result = eval(command, g)
+  File "<string>", line 1, in <module>
+  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/__init__.py", line 269, in __call__
+    res = self.eval(p)
+  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/functions.py", line 170, in __call__
+    return super(SignatureTranslatedFunction, self).__call__(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/functions.py", line 100, in __call__
+    res = super(Function, self).__call__(*new_args, **new_kwargs)
+RRuntimeError: Error in all.equal(n.women, sol$n.women, check.attributes = F) : 
+  object 'n.women' not found
+
+ERROR:root:Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/gradebook/score.py", line 180, in check
+    result = eval(command, g)
+  File "<string>", line 1, in <module>
+  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/__init__.py", line 269, in __call__
+    res = self.eval(p)
+  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/functions.py", line 170, in __call__
+    return super(SignatureTranslatedFunction, self).__call__(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/functions.py", line 100, in __call__
+    res = super(Function, self).__call__(*new_args, **new_kwargs)
+RRuntimeError: Error in all.equal(n.women, sol$n.women, check.attributes = F) : 
+  object 'n.women' not found
+
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/gradebook/score.py", line 180, in check
+    result = eval(command, g)
+  File "<string>", line 1, in <module>
+  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/__init__.py", line 269, in __call__
+    res = self.eval(p)
+  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/functions.py", line 170, in __call__
+    return super(SignatureTranslatedFunction, self).__call__(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/functions.py", line 100, in __call__
+    res = super(Function, self).__call__(*new_args, **new_kwargs)
+RRuntimeError: Error in all.equal(n.women, sol$n.women, check.attributes = F) : 
+  object 'n.women' not found
+
+INFO:root:(1 points) R('all.equal(frac.women, sol$frac.women, check.attributes=F)')[0] is True
+INFO:root:(1 points) R('all.equal(n.sports, sol$n.sports, check.attributes=F)')[0] is True
+INFO:root:You got a 23 out of 31.

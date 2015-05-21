@@ -17,7 +17,7 @@
         }, 
         "hw4": {
             "note": "", 
-            "hash": "88f0caee834431fd8e8e25222c8ff14770e98c06", 
+            "hash": "e1993dfb50d22d19096275db33f186e7328ce198", 
             "earned": 20, 
             "possible": 20, 
             "penalty": 0, 
@@ -25,6 +25,23 @@
                 "hw4": {
                     "possible": 20, 
                     "earned": 20
+                }
+            }
+        }, 
+        "hw2": {
+            "note": "", 
+            "hash": "079651d0a540ea393f7f1a2f46ad05cec1d7879c", 
+            "earned": 23, 
+            "possible": 31, 
+            "penalty": 0, 
+            "parts": {
+                "hw2_fig": {
+                    "possible": 20, 
+                    "earned": 15
+                }, 
+                "hw2": {
+                    "possible": 11, 
+                    "earned": 8
                 }
             }
         }
