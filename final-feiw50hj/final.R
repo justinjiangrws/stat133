@@ -400,6 +400,10 @@ NumJackpot <- function(k, B){
 # <your plot here>
 #hist(NumJackpot(100,5000)) #Andy
 #hist(NumJackpot(500,5000))
+hist(NumJackpot(100,100))
+hist(NumJackpot(500,100))
+hist(NumJackpot(1000,100))
+hist(NumJackpot(5000,100))
 
 
 
