@@ -1,0 +1,12 @@
+Total: 24/25
+
+Part 1:  bml_functions.R
+a. bml.init 2/2
+
+b. bml.step 5/5
+
+c. bml.sim 2/2
+
+Part 2: bml_simulation.R 6/6
+
+Part 3: bml_comments and bml_figures 9/10
