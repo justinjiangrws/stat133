@@ -85,7 +85,7 @@ RRuntimeError: Error in all.equal(y, sol$y, check.attributes = F) : object 'y' n
 
 ERROR:root:(1 points) Checking R('all.equal(z, sol$z, check.attributes=F)')[0]
 ERROR:root:... Expecting: True
-ERROR:root:... But got:   target is logical, current is NULL
+ERROR:root:... But got:   5000 element mismatches
 INFO:root:(1 points) R('all.equal(v, sol$v, check.attributes=F)')[0] is True
 INFO:root:(1 points) R('all.equal(w, sol$w, check.attributes=F)')[0] is True
 INFO:root:(1 points) R('all.equal(m, sol$m, check.attributes=F)')[0] is True
@@ -98,10 +98,8 @@ ERROR:root:... But got:   Length mismatch: comparison on first 4 components
 INFO:root:(1 points) R('all.equal(class(t1), \'table\', check.attributes=F)')[0] is True
 INFO:root:(1 points) R('all.equal(class(t2), \'table\', check.attributes=F)')[0] is True
 INFO:root:(2 points) R('all.equal(abs(bdiff), abs(sol$bdiff), check.attributes=F)')[0] is True
+INFO:root:(1 points) R('length(max.rain)==length(sol$max.rain)')[0] is True
 INFO:root:(1 points) R('all.equal(unlist(max.rain), sol$max.rain, check.attributes=F)')[0] is True
-ERROR:root:(1 points) Checking R('all.equal(class(max.rain), \'integer\', check.attributes=F)')[0]
-ERROR:root:... Expecting: True
-ERROR:root:... But got:   1 string mismatch
 ERROR:root:(3 points) Checking R('all.equal(unlist(max.diff.rain), sol$max.diff.rain, check.attributes=F)')[0]
 ERROR:root:... Expecting: True
 ERROR:root:... But got:   Numeric: lengths (0, 5) differ
@@ -113,26 +111,19 @@ ERROR:root:... Expecting: True
 ERROR:root:... But got:   Mean absolute difference: 0.2173247
 INFO:root:(1 points) R('all.equal(class(prop.rain), \'numeric\', check.attributes=F)')[0] is True
 INFO:root:(1 points) R('sum(prop.rain)<5')[0] is True
-INFO:root:Executed R('set.seed(8664422); GenNorm(mean=0, sd=1, n=1000, plot.hist=TRUE)')
 INFO:root:Executed R('set.seed(8664422); GenNorm.out1 <- GenNorm(mean=0, sd=1, n=1000, plot.hist=TRUE)')
 INFO:root:(2 points) R('all.equal(length(GenNorm.out1), 1000, check.attributes=F)')[0] is True
 INFO:root:(2 points) R('all.equal(GenNorm.out1, sol$GenNorm.out1, check.attributes=F)')[0] is True
-INFO:root:Executed R('set.seed(8664422); GenNorm.out2 <- GenNorm(mean=3, sd=2, n=1000, plot.hist=FALSE)')
-ERROR:root:(1 points) Checking R('all.equal(GenNorm.out2, sol$GenNorm.out2, check.attributes=F)')[0]
-ERROR:root:... Expecting: True
-ERROR:root:... But got:   Mean relative difference: 0.7351121
+INFO:root:Executed R('set.seed(33445566); GenNorm.out2 <- GenNorm(mean=3, sd=2, n=1000, plot.hist=FALSE)')
+INFO:root:(1 points) R('all.equal(GenNorm.out2, sol$GenNorm.out2, check.attributes=F)')[0] is True
 INFO:root:(1 points) R('all.equal(c(formals(GenNorm)$mean, formals(GenNorm)$sd, formals(GenNorm)$n, formals(GenNorm)$plot.hist), c(0, 1, 1000, TRUE), check.attributes=F)')[0] is True
-INFO:root:Executed R('set.seed(8664422); svar.out1 <- standardizeVar(sol$m, cols=TRUE)')
-ERROR:root:(2 points) Checking R('all.equal(dim(svar.out1), dim(sol$svar.out1), check.attributes=F)')[0]
+INFO:root:Executed R('svar.out1 <- standardizeVar(sol$m.test, cols=TRUE)')
+INFO:root:(3 points) R('all.equal(dim(svar.out1), dim(sol$svar.out1), check.attributes=F)')[0] is True
+INFO:root:(2 points) R('all.equal(svar.out1, sol$svar.out1, check.attributes=F)')[0] is True
+INFO:root:Executed R('svar.out2 <- standardizeVar(sol$m.test, cols=FALSE)')
+ERROR:root:(1 points) Checking R('all.equal(svar.out2, sol$svar.out2, check.attributes=F)')[0]
 ERROR:root:... Expecting: True
-ERROR:root:... But got:   Mean relative difference: 0.6
-ERROR:root:(2 points) Checking R('all.equal(svar.out1, sol$svar.out1, check.attributes=F)')[0]
-ERROR:root:... Expecting: True
-ERROR:root:... But got:   Numeric: lengths (100, 40) differ
-INFO:root:Executed R('set.seed(8664422); svar.out2 <- standardizeVar(sol$m, cols=FALSE)')
-ERROR:root:(2 points) Checking R('all.equal(svar.out2, sol$svar.out2, check.attributes=F)')[0]
-ERROR:root:... Expecting: True
-ERROR:root:... But got:   Numeric: lengths (100, 40) differ
+ERROR:root:... But got:   Mean relative difference: 1.369276
 INFO:root:Executed R('set.seed(8664422); pdiff.out <- PermDiff(cases=sol$cases, controls=sol$controls, k=sol$n.it)')
 ERROR:root:Got exception on main handler
 Traceback (most recent call last):
@@ -214,7 +205,7 @@ Traceback (most recent call last):
 RRuntimeError: Error in all.equal(length(pdiff.out), sol$n.it, check.attributes = F) : 
   object 'pdiff.out' not found
 
-ERROR:root:(4 points) Checking R('all.equal(pdiff.out, sol$pdiff.out, check.attributes=F)')[0]
+ERROR:root:(4 points) Checking R('abs(mean(pdiff.out)) < 0.5)')[0]
 ERROR:root:... Expecting: True
 ERROR:root:... But got:   Traceback error
 ERROR:root:Got exception:
@@ -222,41 +213,23 @@ Traceback (most recent call last):
   File "/Library/Python/2.7/site-packages/gradebook/score.py", line 180, in check
     result = eval(command, g)
   File "<string>", line 1, in <module>
-  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/__init__.py", line 269, in __call__
-    res = self.eval(p)
-  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/functions.py", line 170, in __call__
-    return super(SignatureTranslatedFunction, self).__call__(*args, **kwargs)
-  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/functions.py", line 100, in __call__
-    res = super(Function, self).__call__(*new_args, **new_kwargs)
-RRuntimeError: Error in all.equal(pdiff.out, sol$pdiff.out, check.attributes = F) : 
-  object 'pdiff.out' not found
-
+  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/__init__.py", line 268, in __call__
+    p = rinterface.parse(string)
+ValueError: Error while parsing the string.
 ERROR:root:Traceback (most recent call last):
   File "/Library/Python/2.7/site-packages/gradebook/score.py", line 180, in check
     result = eval(command, g)
   File "<string>", line 1, in <module>
-  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/__init__.py", line 269, in __call__
-    res = self.eval(p)
-  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/functions.py", line 170, in __call__
-    return super(SignatureTranslatedFunction, self).__call__(*args, **kwargs)
-  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/functions.py", line 100, in __call__
-    res = super(Function, self).__call__(*new_args, **new_kwargs)
-RRuntimeError: Error in all.equal(pdiff.out, sol$pdiff.out, check.attributes = F) : 
-  object 'pdiff.out' not found
-
+  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/__init__.py", line 268, in __call__
+    p = rinterface.parse(string)
+ValueError: Error while parsing the string.
 Traceback (most recent call last):
   File "/Library/Python/2.7/site-packages/gradebook/score.py", line 180, in check
     result = eval(command, g)
   File "<string>", line 1, in <module>
-  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/__init__.py", line 269, in __call__
-    res = self.eval(p)
-  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/functions.py", line 170, in __call__
-    return super(SignatureTranslatedFunction, self).__call__(*args, **kwargs)
-  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/functions.py", line 100, in __call__
-    res = super(Function, self).__call__(*new_args, **new_kwargs)
-RRuntimeError: Error in all.equal(pdiff.out, sol$pdiff.out, check.attributes = F) : 
-  object 'pdiff.out' not found
-
+  File "/Library/Python/2.7/site-packages/rpy2-2.5.6-py2.7-macosx-10.10-intel.egg/rpy2/robjects/__init__.py", line 268, in __call__
+    p = rinterface.parse(string)
+ValueError: Error while parsing the string.
 INFO:root:Executed R('set.seed(47)')
 INFO:root:Executed R('njack.output <- NumJackpot(1000, 100)')
 ERROR:root:Got exception on main handler
@@ -487,38 +460,4 @@ Traceback (most recent call last):
 RRuntimeError: Error in all.equal(dna2, sol$dna2, check.attributes = F) : 
   object 'dna2' not found
 
-INFO:root:(2 points) Cars 1: Are the boxplots plotted? is y
-ERROR:root:(2 points) Checking Cars 2: Is the scatterplot of qsec vs. hp correct?
-ERROR:root:... Expecting: False
-ERROR:root:... But got:   n
-INFO:root:(1 points) Cars 2: Does the plot have a regression line? is y
-INFO:root:(1 points) Cars 3: Is the scatterplot of disp vs. wt correct? is y
-INFO:root:(1 points) Cars 3: Are the plotting symbols coloured? is y
-INFO:root:(1 points) Cars 3: Have the axis labels been set? is y
-INFO:root:(1 points) World Bank 1: Is the scatterplot of life exp. vs fertility correct? is y
-INFO:root:(1 points) World Bank 1: Is the plotting symbol . ? is y
-INFO:root:(1 points) World Bank 1: Are the plotting symbols coloured? is y
-INFO:root:(1 points) World Bank 1: Is there a vertical line at 2.1? is y
-INFO:root:(1 points) World Bank 2: Are there 2 scatterplots of life exp. vs fertility? is y
-INFO:root:(1 points) World Bank 2: Are the scatterplots for different years? is y
-ERROR:root:(1 points) Checking World Bank 2: Do they have a vertical line at 2.1?
-ERROR:root:... Expecting: False
-ERROR:root:... But got:   n
-INFO:root:(1 points) World Bank 2: Are the plotting symbols coloured? is y
-INFO:root:(2 points) World Bank 3: Is the histogram correct? is y
-INFO:root:(1 points) World Bank 3: Has the breaks parameter been set to something reasonable? is y
-INFO:root:(1 points) World Bank 3: Have the labels been edited? is y
-ERROR:root:(1 points) Checking Histogr w/apply: Does the rain plot have 6 panels?
-ERROR:root:... Expecting: False
-ERROR:root:... But got:   n
-ERROR:root:(2 points) Checking Histogr w/apply: Are there 5 histograms?
-ERROR:root:... Expecting: False
-ERROR:root:... But got:   n
-ERROR:root:(3 points) Checking Jackpot : Did NumJackpot produce histograms?
-ERROR:root:... Expecting: False
-ERROR:root:... But got:   n
-ERROR:root:(1 points) Checking Jackpot : Are the histograms on one page?
-ERROR:root:... Expecting: False
-ERROR:root:... But got:   n
-INFO:root:(4 points) Jackpot : Do the histograms look reasonable? is y
-INFO:root:You got a 49 out of 100.
+INFO:root:You got a 56 out of 100.
